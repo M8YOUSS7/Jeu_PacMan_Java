@@ -3,6 +3,7 @@ public abstract class Comportement {
 
     public Comportement(ViewCommand cVw) {
         cView = cVw;
+        ajuste();
     }
 
     public abstract void ajuste();

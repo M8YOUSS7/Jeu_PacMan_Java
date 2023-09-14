@@ -20,30 +20,28 @@ public class ControllerSimpleGame extends AbstractController {
         cView.restart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
                     restart();
+                    cmptmt = new SimpleCompotementBtnRestart(cView);
                 }
             });
 
         cView.pause.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
                     pause();
-                    cmptmt = new SimpleComportementCommandArreter(cView);
-                    cmptmt.ajuste();
+                    cmptmt = new SimpleComportementBtnPause(cView);
                 }
             });
 
         cView.run.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
                     play();
-                    cmptmt = new SimpleComportementCommandLancer(cView);
-                    cmptmt.ajuste();
+                    cmptmt = new SimpleComportementBtnRun(cView);
                 }
             });
 
         cView.step.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evenement) {
                     step();
-                    cmptmt = new SimpleComportementCommandLancer(cView);
-                    cmptmt.ajuste();
+                    cmptmt = new SimpleComportementBtnStep(cView);
                 }
             });
 
@@ -56,7 +54,6 @@ public class ControllerSimpleGame extends AbstractController {
         sView.afficher();
         cView.afficher();
         cmptmt = new SimpleComportementCommandArreter(cView);
-        cmptmt.ajuste();
     }
 
 

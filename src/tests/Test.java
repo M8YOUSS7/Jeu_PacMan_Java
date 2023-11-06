@@ -22,7 +22,7 @@ public class Test {
         ControllerSimpleGame ctr = new ControllerSimpleGame();
         */
 
-        ControleurPacmanGame ctr = new ControleurPacmanGame(15);
-        ctr.play();
+        ControleurPacmanGame ctr = new ControleurPacmanGame(15000);
+        //ctr.play();
     }
 }

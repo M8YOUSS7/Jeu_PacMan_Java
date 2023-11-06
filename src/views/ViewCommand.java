@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 
+import controllers.AbstractController;
 import controllers.ControllerSimpleGame;
 import models.Game;
 
@@ -23,9 +24,9 @@ public class ViewCommand extends Ecran {
     public JButton run;
     public JButton step;
     public JSlider slider;
-    public ControllerSimpleGame control;
+    public AbstractController control;
 
-    public ViewCommand(Game g, ControllerSimpleGame c) {
+    public ViewCommand(Game g, AbstractController c) {
         super(g, "Commande");
 
         global = new JPanel(new GridLayout(2, 1));
@@ -66,6 +67,7 @@ public class ViewCommand extends Ecran {
         global.add(bas);
         ecran.add(global);
         setDimension(600, 300);
+        setLocation(4000, 350);
         control = c;
     }
 

@@ -12,5 +12,6 @@ public class SimpleComportementBtnStep extends Comportement {
         cView.step.setEnabled(true);
         cView.pause.setEnabled(false);
         cView.restart.setEnabled(true);
+        cView.game.isRunning = false;
     }
 }

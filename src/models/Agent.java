@@ -2,11 +2,16 @@ package models;
 
 public abstract class Agent {
     PositionAgent pos;
-    Strategie strategy;
+    protected Strategie strategy;
 
     public Agent(PositionAgent p) {
         pos = p;
         strategy = new AleatStrategie();
+    }
+
+    public Agent(PositionAgent p, Strategie s) {
+        pos = p;
+        strategy = s;
     }
 
     public void setPos(int x, int y) {
@@ -18,7 +23,7 @@ public abstract class Agent {
         return pos;
     }
 
-    public abstract AgentAction play();
+    public abstract AgentAction play(Maze m);
 
     public String toString() {
         return "["+ pos.getX() + ", "+ pos.getY() + "]";

@@ -1,11 +1,16 @@
 package views;
 
 import models.Maze;
+import models.Pacman;
 import models.PacmanGame;
+import models.PositionAgent;
+import models.Agent;
+import models.Fantome;
 import models.Game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Observable;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -39,14 +44,28 @@ public class ViewPacmanGame extends Ecran {
         pkmPannel = new PanelPacmanGame(m);
         ecran.add(pkmPannel);
         setDimension(m.getSizeX() *20, m.getSizeY() *20);
-        setLocation(250, 350);
+        setLocation(150, 325);
     }
 
     @Override
     public void update(Observable arg0, Object arg1) {
-//        Maze maze = ((PacmanGame) arg0).getLabyrinthe();
-        pkmPannel.setMaze(((PacmanGame) arg0).getLabyrinthe());
+        ArrayList<PositionAgent> pacmansPos = new ArrayList<PositionAgent>();
+        ArrayList<PositionAgent> fantomesPos = new ArrayList<PositionAgent>();
+        
+        for(Agent e : ((PacmanGame) arg0).getListeAgents()) {
+            if(e instanceof Fantome) {
+                fantomesPos.add(e.getPos());
+            } else pacmansPos.add(e.getPos());
+        }
+
+        pkmPannel.setPacmans_pos(pacmansPos);
+        pkmPannel.setGhosts_pos(fantomesPos);
+
         pkmPannel.repaint();
-//        setDimension(maze.getSizeX() *20, maze.getSizeY() *20);
+    }
+
+    public void setMaze(Maze maze) {
+        pkmPannel.setMaze(maze);
+        pkmPannel.repaint();
     }
 }

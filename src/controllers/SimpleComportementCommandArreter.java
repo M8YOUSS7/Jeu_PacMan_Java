@@ -12,5 +12,6 @@ public class SimpleComportementCommandArreter extends Comportement {
         cView.step.setEnabled(true);
         cView.pause.setEnabled(false);
         cView.restart.setEnabled(false);
+        cView.game.isRunning = false;
     }
 }

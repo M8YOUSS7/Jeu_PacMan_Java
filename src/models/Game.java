@@ -45,10 +45,11 @@ public abstract class Game extends Observable implements Runnable {
 
     public void pause() {
         isRunning =false;
+        thread = null;
     }
 
     public void run() {
-        while(isRunning !=false) {
+        while(isRunning ==true) {
             step();
             try {
                 Thread.sleep(time);

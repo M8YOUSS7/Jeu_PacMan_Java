@@ -1,19 +1,26 @@
 package models;
 
-import java.util.Random;
-
 public class Pacman extends Agent {
+    int food =0;
 
     public Pacman(PositionAgent p) {
         super(p);
     }
 
+    public Pacman(PositionAgent p, Strategie s) {
+        super(p, s); 
+    }
+
     @Override
-    public AgentAction play() {
-        return new AgentAction(new Random().nextInt(5));
+    public AgentAction play(Maze m) {
+        return strategy.getAction(this, m);
     }
 
     public String toString() {
-        return "Pacman --- " + super.toString();
+        return "Pacman --- " + super.toString() + ", food : " + food;
+    }
+
+    public void eatFood(int f) {
+        food += f;
     }
 }

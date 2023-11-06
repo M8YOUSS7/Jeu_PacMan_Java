@@ -20,7 +20,7 @@ public abstract class Game extends Observable implements Runnable {
 
     public void init() {
         turn =0;
-        isRunning =true;
+        isRunning =false;
         initializeGame();
         setChanged();
         notifyObservers();
@@ -35,7 +35,6 @@ public abstract class Game extends Observable implements Runnable {
             setChanged();
             notifyObservers();
         } else {
-            isRunning =false;
             gameOver();
         }
     }

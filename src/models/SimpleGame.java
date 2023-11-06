@@ -19,6 +19,5 @@ public class SimpleGame extends Game {
     
     public void gameOver() {
         System.out.println("Jeu terminer après " + turn + " tours.");
-
     }
 }

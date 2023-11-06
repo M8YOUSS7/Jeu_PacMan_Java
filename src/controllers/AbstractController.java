@@ -6,6 +6,7 @@ public abstract class AbstractController {
 
     AbstractController(Game g) {
         game = g;
+        game.init();
     }
     
     public void restart() {
@@ -23,7 +24,6 @@ public abstract class AbstractController {
 
     public void pause () {
         game.pause();
-
     }
 
     public void setSpeed(double speed) {

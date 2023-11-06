@@ -11,13 +11,14 @@ import views.*;
 
 public class ControllerSimpleGame extends AbstractController {
     Comportement cmptmt;
+    ViewSimpleGame sView;
+    ViewCommand cView;
 
     public ControllerSimpleGame() {
-        super(new SimpleGame(15));
-        game.init();
-        ViewSimpleGame sView = new ViewSimpleGame(game);
+        super(new SimpleGame(150));
+        sView = new ViewSimpleGame(game);
         sView.setLocation(100, 350);
-        ViewCommand cView = new ViewCommand(game, this);
+        cView = new ViewCommand(game, this);
         cView.setLocation(400, 350);
         
 

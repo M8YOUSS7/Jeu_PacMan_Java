@@ -1,6 +1,10 @@
 package tests;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 import controllers.ControleurPacmanGame;
+import models.Agent;
 
 public class Test {
     public static void main(String[] args) throws Exception {
@@ -23,6 +27,7 @@ public class Test {
         */
 
         ControleurPacmanGame ctr = new ControleurPacmanGame(15000);
+        
         //ctr.play();
     }
 }

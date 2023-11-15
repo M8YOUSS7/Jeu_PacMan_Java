@@ -20,7 +20,7 @@ public class ControleurPacmanGame extends AbstractController {
     protected String fileName = "originalClassic.lay";
 
     public ControleurPacmanGame(int mxt) throws Exception {
-        super(new PacmanGame(mxt, new Maze("layouts/originalClassic.lay")));
+        super(PacmanGame.getIstance(mxt, new Maze("layouts/originalClassic.lay")));
         pkmView = new ViewPacmanGame(game);
         pkmViewCommand = new ViewCommand(game, this);
         cmptmt = new SimpleCompotementBtnRestart(pkmViewCommand);

@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 public class CapsulePeriodeState extends AbstractPacmanGameState {
 
     CapsulePeriodeState(PacmanGame g) {
@@ -17,12 +15,17 @@ public class CapsulePeriodeState extends AbstractPacmanGameState {
     @Override
     public void checkDeaths(Agent a) {
         
-        if((a instanceof Fantome && isPacmanPos(a.pos)) || a instanceof Pacman) {
-            game.listeAgents.removeIf(agt -> agt instanceof Fantome && a.pos.equals(agt.pos));
+        if((a instanceof Fantome && isPacmanPos(a.pos))) {
+            a.setIsDead(true);
+        }  else if (a instanceof Pacman) {
+            for(Agent agt : game.getListeAgents()) {
+                if(agt instanceof Fantome && agt.getPos().equals(a.getPos())) {
+                    agt.setIsDead(true);
+                }
+            }
         }
     }
 
-    @Override
     public void setTimer(int t) {
         if (t>0) {
             System.out.println("Capsule Period State, time : " + timer + ".\n");

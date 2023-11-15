@@ -10,13 +10,15 @@ public class SimpleStrategie implements Strategie {
         AgentAction act;
 
         ArrayList <AgentAction> res = new ArrayList<AgentAction>();
-        for (int i=0; i<5; i++) {
+        for (int i=0; i<4; i++) {
             act = new AgentAction(i);
             if(isLegalMove(a, act, m)) {
                 res.add(act);
             }
         }
-        return res.get(new Random().nextInt(res.size()));
+
+        act = new AgentAction(4);
+
+        return (res.isEmpty() == true) ? act : res.get(new Random().nextInt(res.size()));
     }
-    
 }

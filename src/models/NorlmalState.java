@@ -1,7 +1,5 @@
 package models;
 
-import java.util.ArrayList;
-
 public class NorlmalState extends AbstractPacmanGameState {
 
     NorlmalState(PacmanGame g) {
@@ -10,9 +8,15 @@ public class NorlmalState extends AbstractPacmanGameState {
 
     @Override
     public void checkDeaths(Agent a) {
-        if((a instanceof Pacman && isGhotPos(a.pos)) || a instanceof Fantome) {
-            game.listeAgents.removeIf(agt -> agt instanceof Pacman && a.pos.equals(agt.pos));
-        }   //if(a instanceof Fantome && isPacmanPos(a.pos))
+        if((a instanceof Pacman && isGhotPos(a.pos))) {
+            a.setIsDead(true);
+        } else if (a instanceof Fantome) {
+            for(Agent agt : game.getListeAgents()) {
+                if(agt instanceof Pacman && agt.getPos().equals(a.getPos())) {
+                    agt.setIsDead(true);
+                }
+            }
+        }
     }
 
     @Override

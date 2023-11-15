@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class PacmanGame extends Game {
     protected ArrayList<Agent> listeAgents;
@@ -9,22 +10,30 @@ public class PacmanGame extends Game {
     protected Maze labyrinthe;
     protected AbstractPacmanGameState state;
 
-    public PacmanGame(int mt, Maze m) {
+    private static PacmanGame uniqueInstance;
+
+    private PacmanGame(int mt, Maze m) {
         super(mt);
         listeAgents = new ArrayList<Agent>();
         labyrinthe = m;
         state = new NorlmalState(this);
     }
 
+    public static synchronized PacmanGame getIstance(int mt, Maze m) {
+        if(uniqueInstance == null)
+            uniqueInstance = new PacmanGame(mt, m);
+        return uniqueInstance;
+    }
+
     @Override
     public void initializeGame() {
         listeAgents.clear();
         for(PositionAgent pa : labyrinthe.getPacman_start()) {
-            listeAgents.add(new Pacman(pa, new LinearStrategie()));
+            listeAgents.add(new Pacman(pa, new ScaredStrategie(this)));
         }
 
         for(PositionAgent pa : labyrinthe.getGhosts_start()) {
-            listeAgents.add(new Fantome(pa, getOneStrategie()));
+            listeAgents.add(new Fantome(pa, new LinearStrategie()));
         }
     }
     
@@ -56,6 +65,7 @@ public class PacmanGame extends Game {
                 }
             }
         
+        listeAgents.removeAll(listeAgents.stream().filter(Agent::isDead).collect(Collectors.toList()));
         state.setTimer(state.timer-1);
     }
 
@@ -114,5 +124,13 @@ public class PacmanGame extends Game {
 
     public ArrayList<Agent> getListeAgents() {
         return listeAgents;
+    }
+
+    public boolean isPacmanPos(PositionAgent pa) {
+        return listeAgents.stream().filter(agt -> agt instanceof Pacman).collect(Collectors.toList()).isEmpty();
+    }
+
+    public boolean isFantomePos(PositionAgent pa) {
+        return listeAgents.stream().filter(agt -> agt instanceof Fantome).collect(Collectors.toList()).isEmpty();
     }
 }

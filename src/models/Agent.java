@@ -20,6 +20,8 @@ public abstract class Agent {
         pos.setY(y);
     }
 
+    public void setPos(PositionAgent newPos) { this.pos = newPos; }
+
     public PositionAgent getPos() {
         return pos;
     }

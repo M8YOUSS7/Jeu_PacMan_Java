@@ -53,7 +53,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
    - #Tests fait.
 
 
-2) #Création des premiers éléments de l’interface graphique
+2) # Création des premiers éléments de l’interface graphique
    - ## Ecran.java
       
       Ce fichier contient la classe abstraite `Ecran` qui représente une fenêtre d'affichage dans le jeu Pac-Man.

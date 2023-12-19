@@ -50,7 +50,8 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       
       Pour utiliser la classe SimpleGame, vous devez l'instancier en spécifiant un entier en paramètre lors de la création de l'objet. Cet entier représente le nombre maximum de tours du jeu.
 
-   - #Tests fait.
+   - #Tests
+     Reuissis.
 
 
 2) # Création des premiers éléments de l’interface graphique
@@ -118,11 +119,11 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
          
          Ce fichier contient la classe `AbstractController` qui est une classe abstraite utilisée pour contrôler le jeu PacMan.
          
-         ### Utilisation
+         #### Utilisation
          
          Pour utiliser la classe `AbstractController`, vous devez l'étendre et implémenter les méthodes nécessaires pour contrôler le jeu.
          
-         ### Méthodes
+         #### Méthodes
          
          - `restart()`: Cette méthode permet de redémarrer le jeu en mettant en pause le jeu actuel et en initialisant un nouveau jeu.
          - `step()`: Cette méthode permet de faire avancer le jeu d'un pas.
@@ -157,10 +158,27 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
          - Ce fichier utilise des classes et des interfaces provenant d'autres fichiers du projet, notamment `AbstractController`, `SimpleGame`, `ViewSimpleGame`, `ViewCommand` et différentes classes de comportement.
          - Assurez-vous d'avoir les fichiers sources correspondants pour exécuter le code correctement.
 
-   4.
-
-   5.
-
-
+   4. # Tests
+      Reuissis.
+   
 4) # Réalisations à effectuer pour obtenir une première simulation de jeu
+   ## ControleurPacmanGame.java
+      Ce fichier contient la classe ControleurPacmanGame, qui est un contrôleur pour le jeu Pacman. Il gère les interactions entre le modèle PacmanGame et les vues ViewPacmanGame et ViewCommand.
+
+      ### Fonctionnalités
+      - Initialise le jeu Pacman avec un labyrinthe par défaut.
+      - Permet de charger un labyrinthe à partir d'un fichier.
+      - Gère les actions des boutons de la vue de commande (restart, pause, run, step).
+      ### Utilisation
+      1. Instanciez un objet ControleurPacmanGame en spécifiant le nombre maximum de tours (mxt) pour le jeu.
+      2. Le jeu Pacman sera initialisé avec un labyrinthe par défaut.
+      3. Utilisez les boutons de la vue de commande pour interagir avec le jeu:
+         - Le bouton restart permet de redémarrer le jeu avec le même labyrinthe.
+         - Le bouton pause permet de mettre le jeu en pause.
+         - Le bouton run permet de reprendre le jeu après une pause.
+         - Le bouton step permet d'avancer d'un tour à la fois dans le jeu.
+      ### Personnalisation du labyrinthe
+      Pour charger un labyrinthe à partir d'un fichier, utilisez la méthode **initializeMazeDeFichier()**. Cette méthode ouvrira une boîte de dialogue pour sélectionner un fichier de labyrinthe. Une fois le fichier sélectionné, le labyrinthe sera chargé et le jeu sera initialisé avec ce nouveau labyrinthe.
+
+
 

@@ -53,7 +53,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
    - #Tests fait.
 
 
-2) Création des premiers éléments de l’interface graphique
+2) Création des premiers éléments de l’interface graphique[^1]
    - # Ecran.java
       
       Ce fichier contient la classe abstraite `Ecran` qui représente une fenêtre d'affichage dans le jeu Pac-Man.
@@ -109,10 +109,33 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
 
 2) Création du Modèle-Vue-Contrôleur
-   1. 
-   2.
+   1. # Mise en place du design pattern Observateur
+      Consulter [^1]
+
+
+   2. #Création du contrôleur pour l’interface graphique
+      # AbstractController
+         
+         Ce fichier contient la classe `AbstractController` qui est une classe abstraite utilisée pour contrôler le jeu PacMan.
+         
+         ## Utilisation
+         
+         Pour utiliser la classe `AbstractController`, vous devez l'étendre et implémenter les méthodes nécessaires pour contrôler le jeu.
+         
+         ## Méthodes
+         
+         - `restart()`: Cette méthode permet de redémarrer le jeu en mettant en pause le jeu actuel et en initialisant un nouveau jeu.
+         - `step()`: Cette méthode permet de faire avancer le jeu d'un pas.
+         - `play()`: Cette méthode permet de lancer le jeu.
+         - `pause()`: Cette méthode permet de mettre en pause le jeu.
+         - `setSpeed(double speed)`: Cette méthode permet de définir la vitesse du jeu.
+
+
+
    3.
+
    4.
+
    5.
 
 

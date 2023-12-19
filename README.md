@@ -42,7 +42,14 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       
       Pour utiliser la classe `Game`, vous devez créer une classe qui étend `Game` et implémenter les méthodes abstraites `initializeGame()`, `takeTurn()`, `gameContinue()` et `gameOver()`. Vous pouvez également ajouter des observateurs pour suivre l'état du jeu.
 
-   - class 
+   - # SimpleGame.java
+      
+      Ce fichier contient la classe SimpleGame, qui est une sous-classe de la classe Game. La classe SimpleGame représente un jeu simple avec des tours et une condition de fin.
+      
+      ## Utilisation
+      
+      Pour utiliser la classe SimpleGame, vous devez l'instancier en spécifiant un entier en paramètre lors de la création de l'objet. Cet entier représente le nombre maximum de tours du jeu.
+
 3) Création des premiers éléments de l’interface graphique
 4) Création du Modèle-Vue-Contrôleur
 5) Réalisations à effectuer pour obtenir une première simulation de jeu

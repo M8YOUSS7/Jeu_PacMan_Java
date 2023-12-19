@@ -130,9 +130,32 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
          - `pause()`: Cette méthode permet de mettre en pause le jeu.
          - `setSpeed(double speed)`: Cette méthode permet de définir la vitesse du jeu.
 
-
-
-   3.
+   3. # Ajout des écouteurs sur les différents composants de l’interface de commande
+      - ## ControllerSimpleGame.java
+      
+         Ce fichier contient la classe `ControllerSimpleGame`, qui est responsable de la gestion des interactions entre le modèle de jeu, les vues et les actions de l'utilisateur.
+         
+         ### Fonctionnalités
+         
+         - Crée une instance de `SimpleGame` avec une vitesse de jeu de 150.
+         - Initialise les vues `ViewSimpleGame` et `ViewCommand` pour afficher le jeu et les commandes respectivement.
+         - Associe des écouteurs d'événements aux boutons de la vue `ViewCommand` pour gérer les actions de l'utilisateur (redémarrer, mettre en pause, jouer, avancer d'un pas).
+         - Associe un écouteur de changement d'état au curseur de vitesse de la vue `ViewCommand` pour ajuster la vitesse du jeu.
+         - Définit des comportements spécifiques pour chaque action de l'utilisateur en créant des instances de classes de comportement correspondantes.
+         - Affiche les vues `ViewSimpleGame` et `ViewCommand` à des emplacements spécifiques sur l'écran.
+         - Initialise le comportement par défaut pour le bouton d'arrêt dans la vue `ViewCommand`.
+         
+         ### Utilisation
+         
+         1. Assurez-vous d'avoir les dépendances appropriées pour exécuter le code.
+         2. Importez le fichier `ControllerSimpleGame.java` dans votre projet.
+         3. Créez une instance de `ControllerSimpleGame` pour démarrer le jeu.
+         4. Interagissez avec les commandes de jeu affichées dans la vue `ViewCommand` pour jouer, mettre en pause, redémarrer ou ajuster la vitesse du jeu.
+         
+         ### Remarques
+         
+         - Ce fichier utilise des classes et des interfaces provenant d'autres fichiers du projet, notamment `AbstractController`, `SimpleGame`, `ViewSimpleGame`, `ViewCommand` et différentes classes de comportement.
+         - Assurez-vous d'avoir les fichiers sources correspondants pour exécuter le code correctement.
 
    4.
 

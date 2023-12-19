@@ -16,3 +16,9 @@ Meanwhile, the compiled output files will be generated in the `bin` folder by de
 ## Dependency Management
 
 The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+
+1) Création de l’architecture d’un jeu séquentiel
+   
+3) Création des premiers éléments de l’interface graphique
+4) Création du Modèle-Vue-Contrôleur
+5) Réalisations à effectuer pour obtenir une première simulation de jeu

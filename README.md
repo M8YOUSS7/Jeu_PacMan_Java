@@ -236,4 +236,38 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 
       N'oubliez pas d'importer la classe `Agent` et `Maze` pour utiliser les paramètres de la méthode `getAction`.
 
+      Exemple d'utilisation cf LinearStrategie.java
 
+
+   # AbstractAdvanceStrategie
+
+      Ce fichier contient la classe `AbstractAdvanceStrategie` qui est une classe abstraite implémentant l'interface `Strategie`. Cette classe fait partie du projet PacMan et se trouve dans le package `models`.
+
+      ### Fonctionnalités
+
+      La classe `AbstractAdvanceStrategie` fournit les fonctionnalités suivantes :
+
+      - `getNewPositionAgent(Agent a, AgentAction act)`: Cette méthode retourne une nouvelle position pour un agent en fonction de l'action spécifiée.
+      - `getNewPositionAgent(PositionAgent pos, AgentAction act)`: Cette méthode retourne une nouvelle position pour un agent en fonction de la position actuelle et de l'action spécifiée.
+
+      ### Utilisation
+
+      Pour utiliser la classe `AbstractAdvanceStrategie`, vous devez créer une classe qui l'étend et implémenter les méthodes de l'interface `Strategie`. Vous pouvez ensuite utiliser les méthodes fournies par `AbstractAdvanceStrategie` pour obtenir de nouvelles positions pour vos agents.
+
+      Exemple d'utilisation cf ScaredStrategie.java
+
+
+   ## AbstractPacmanGameState.java
+
+      Ce fichier contient la définition de la classe `AbstractPacmanGameState` dans le package `models`. Cette classe est une classe abstraite qui représente l'état du jeu Pacman(CapsulePeriode, NormarleState, ).
+
+      ### Fonctionnalités
+
+      - La classe contient une référence vers l'objet `PacmanGame` pour accéder aux informations du jeu.
+      - Elle possède une variable `timer` pour gérer le temps.
+      - Elle définit les méthodes abstraites `setTimer` et `checkDeaths` qui doivent être implémentées par les classes dérivées.
+      - Elle fournit les méthodes `isGhostPos` et `isPacmanPos` pour vérifier si une position donnée correspond à celle d'un fantôme ou d'un Pacman respectivement.
+
+      ### Utilisation
+
+      Pour utiliser cette classe, vous devez créer une classe dérivée qui implémente les méthodes abstraites `setTimer` et `checkDeaths`. Vous pouvez également utiliser les méthodes `isGhostPos` et `isPacmanPos` pour effectuer des vérifications sur les positions des agents dans le jeu.

@@ -180,5 +180,60 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       ### Personnalisation du labyrinthe
       Pour charger un labyrinthe à partir d'un fichier, utilisez la méthode **initializeMazeDeFichier()**. Cette méthode ouvrira une boîte de dialogue pour sélectionner un fichier de labyrinthe. Une fois le fichier sélectionné, le labyrinthe sera chargé et le jeu sera initialisé avec ce nouveau labyrinthe.
 
+   ## ViewPacmanGame.java
+      Ce fichier contient la classe `ViewPacmanGame` qui est responsable de l'affichage graphique du jeu Pacman. Il s'agit d'une vue du modèle de jeu Pacman, qui est chargée de mettre à jour l'interface utilisateur en fonction des changements survenus dans le modèle.
+
+      ### Fonctionnalités
+
+      - Affichage du labyrinthe Pacman.
+      - Gestion du menu avec des options pour changer de labyrinthe et quitter l'application.
+      - Mise à jour de l'interface utilisateur en fonction des positions des agents (Pacmans et Fantômes) dans le jeu.
+
+      ### Utilisation
+
+      Pour utiliser cette classe, vous devez l'instancier en lui passant une instance de la classe `Game` en tant que paramètre du constructeur. Assurez-vous d'avoir les dépendances nécessaires pour exécuter l'application.
+
+   ## PacmanGame.java
+      Ce fichier contient la classe PacmanGame qui représente le jeu Pacman. Il étend la classe Game et implémente les fonctionnalités spécifiques au jeu Pacman.
+
+      ### Fonctionnalités
+         - Gestion des agents : la classe PacmanGame maintient une liste d'agents (pacman et fantômes) et gère leur initialisation, leurs mouvements et leurs actions.
+         - Initialisation du jeu : la méthode initializeGame() initialise les agents et les place sur le labyrinthe.
+         - Déroulement du jeu : la méthode takeTurn() permet de jouer un tour du jeu, en faisant jouer chaque agent à tour de rôle.
+         - Conditions de fin de jeu : la méthode gameContinue() vérifie si le jeu doit continuer en fonction de la présence de pacmans et de fantômes.
+         - Fin de jeu : la méthode gameOver() est appelée lorsque le jeu est terminé et affiche un message de fin de jeu.
+      
+      ### Utilisation
+         1. Pour utiliser la classe PacmanGame, vous pouvez créer une instance en appelant la méthode statique getInstance(int mt, Maze m). Cette méthode garantit qu'il n'y aura qu'une seule instance de PacmanGame dans l'application.
+
+         2. Une fois l'instance créée, vous pouvez appeler les méthodes initializeGame(), takeTurn(), gameContinue() et gameOver() pour gérer le déroulement du jeu.
+
+      ### Dépendances
+         #### Ce fichier dépend des classes suivantes :
+
+         + Game : une classe abstraite représentant un jeu générique.
+         + Agent : une classe abstraite représentant un agent dans le jeu.
+         + Maze : une classe représentant le labyrinthe du jeu Pacman.
+         + AbstractPacmanGameState : une classe abstraite représentant l'état du jeu Pacman.
+         + PositionAgent : une classe représentant la position d'un agent dans le labyrinthe.
+         + Pacman : une classe représentant le personnage Pacman.
+         + Fantome : une classe représentant les fantômes du jeu.
+         
+         Assurez-vous d'inclure ces classes dans votre projet pour pouvoir utiliser la classe PacmanGame correctement.
+
+   ## Strategie.java
+      Ce fichier contient l'interface `Strategie` qui définit le contrat pour les stratégies utilisées par l'agent PacMan dans le jeu Maze.
+
+      ### Méthodes
+
+      - `getAction(Agent a, Maze m)`: Cette méthode retourne l'action que l'agent doit effectuer en fonction des informations données par l'agent `a` et le labyrinthe `m`. Elle doit être implémentée par les classes qui implémentent cette interface.
+
+      - `isLegalMove(Agent a, AgentAction act, Maze labyrinthe)`: Cette méthode permet de vérifier si un mouvement donné est légal pour l'agent `a` dans le labyrinthe `labyrinthe`. Par défaut, elle vérifie si la position suite au mouvement n'est pas un mur. Cette méthode peut être surchargée si besoin.
+
+      ### Utilisation
+
+      Pour utiliser cette interface, vous pouvez créer des classes qui implémentent cette interface et définir vos propres stratégies pour l'agent PacMan. Vous pouvez également surcharger la méthode `isLegalMove` si vous souhaitez une logique différente pour vérifier la légalité des mouvements.
+
+      N'oubliez pas d'importer la classe `Agent` et `Maze` pour utiliser les paramètres de la méthode `getAction`.
 
 

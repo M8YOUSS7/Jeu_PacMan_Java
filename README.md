@@ -271,3 +271,14 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       ### Utilisation
 
       Pour utiliser cette classe, vous devez créer une classe dérivée qui implémente les méthodes abstraites `setTimer` et `checkDeaths`. Vous pouvez également utiliser les méthodes `isGhostPos` et `isPacmanPos` pour effectuer des vérifications sur les positions des agents dans le jeu.
+
+   ## Comportement.java
+      La classe `Comportement` est une classe abstraite qui fournit une base pour implémenter des comportements spécifiques pour les boutons de la `ViewCommand` du jeu PacMan.
+
+      ### Méthodes
+
+      - `ajuste()`: Méthode abstraite qui doit être implémentée par les classes dérivées pour ajuster le comportement.
+
+      ### Utilisation
+
+      Pour utiliser cette classe, vous devez créer une classe dérivée de `Comportement` et implémenter la méthode `ajuste()` en fonction des besoins spécifiques.

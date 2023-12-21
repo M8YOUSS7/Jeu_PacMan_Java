@@ -144,4 +144,21 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
             return findShortestPath(f.pos, o1).size() - findShortestPath(f.pos, o2).size();
         }).get();
     }
+
+    public AgentAction getVectorAction(PositionAgent a, PositionAgent b) {
+        int vecX = b.getX() - a.getX();
+        int vecY = b.getY() - a.getY();
+
+        if(vecX == 0 && vecY < 0) {
+            return new AgentAction(AgentAction.NORTH);
+        } else if(vecX == 0 && vecY > 0) {
+            return new AgentAction(AgentAction.SOUTH);
+        } else if(vecX > 0 && vecY == 0) {
+            return new AgentAction(AgentAction.EAST);
+        } else if(vecX < 0 && vecY == 0) {
+            return new AgentAction(AgentAction.WEST);
+        }
+        
+        return new AgentAction(AgentAction.STOP);
+    }
 }

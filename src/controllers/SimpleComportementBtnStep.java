@@ -8,10 +8,10 @@ public class SimpleComportementBtnStep extends Comportement {
     }
 
     public void ajuste() {
-        cView.run.setEnabled(false);
-        cView.step.setEnabled(false);
+        cView.run.setEnabled(true);
+        cView.step.setEnabled(true);
         cView.pause.setEnabled(false);
         cView.restart.setEnabled(true);
-        cView.game.isRunning = true;
+        cView.game.isRunning = false;
     }
 }

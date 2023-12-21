@@ -21,7 +21,7 @@ public class ScaryStrategie extends AbstractAdvanceStrategie {
             }
         }
 
-        legalMoves.removeAll(legalMoves.stream().filter(action -> (a instanceof Pacman && game.isFantomePos(getNewPositionAgent(a, action))) || (a instanceof Fantome && game.isPacmanPos(getNewPositionAgent(a, action)))).collect(Collectors.toList()));
+        //legalMoves.removeAll(legalMoves.stream().filter(action -> (a instanceof Pacman && game.isFantomePos(getNewPositionAgent(a, action))) || (a instanceof Fantome && game.isPacmanPos(getNewPositionAgent(a, action)))).collect(Collectors.toList()));
 
         return (legalMoves.isEmpty()) ? new AgentAction(AgentAction.STOP) : legalMoves.get(new Random().nextInt(legalMoves.size()));
     }

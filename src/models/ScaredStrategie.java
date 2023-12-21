@@ -11,6 +11,8 @@ public class ScaredStrategie extends AbstractAdvanceStrategie {
     public AgentAction getAction(Agent a, Maze m) {
         AgentAction res;
 
+        //l'idee est de calculer la position du plus proche enemy et de s'enoigner de lui
+
         if(a instanceof Pacman) {
             // chercher un chemin sur lequel il n'y a pas de fantome
             PositionAgent capsule = getCloserCapsule(a.getPos(), m);

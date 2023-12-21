@@ -71,9 +71,7 @@ public class AgentAction {
 	public void set_direction(int _direction) {
 		this._direction = _direction;
 	}
-
-	public int getSumOffVectors() { return _vx + _vy;}
-
+	
 	public String toString() { return "Action : ("+_vx + "," + _vy + ") : " + _direction;}
 
 	public boolean equals(AgentAction other) {

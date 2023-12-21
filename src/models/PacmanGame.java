@@ -133,4 +133,14 @@ public class PacmanGame extends Game {
     public boolean isFantomePos(PositionAgent pa) {
         return listeAgents.stream().filter(agt -> agt instanceof Fantome).collect(Collectors.toList()).isEmpty();
     }
+
+    public ManualStrategie setPacmanManuel() {
+        ManualStrategie ms = new ManualStrategie();
+        listeAgents.stream().filter(agt -> agt instanceof Pacman).findFirst().get().setStrategy(ms);
+        return ms;
+    }
+
+    public Pacman getPacman() {
+        return (Pacman) listeAgents.stream().filter(agt -> agt instanceof Pacman).findFirst().get();
+    }
 }

@@ -23,4 +23,8 @@ public class Pacman extends Agent {
     public void eatFood(int f) {
         food += f;
     }
+
+    public ManualStrategie getManualStrategie() {
+        return (strategy instanceof ManualStrategie) ? (ManualStrategie) strategy : null;
+    }
 }

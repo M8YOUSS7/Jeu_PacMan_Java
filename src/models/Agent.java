@@ -1,7 +1,7 @@
 package models;
 
 public abstract class Agent {
-    PositionAgent pos;
+    protected PositionAgent pos;
     protected Strategie strategy;
     protected boolean isDead =false;
 
@@ -39,5 +39,4 @@ public abstract class Agent {
     public void setIsDead(boolean d) { isDead=d; }
 
     public boolean isDead() { return isDead; }
-
 }

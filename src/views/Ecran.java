@@ -18,6 +18,7 @@ public abstract class Ecran implements Observer {
     public Ecran(Game g, String tittle) {
         game =g;
         ecran = new JFrame(tittle);
+        ecran.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         g.addObserver(this);
     }
 

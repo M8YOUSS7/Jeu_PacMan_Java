@@ -6,17 +6,23 @@ import javax.swing.JFileChooser;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import models.ManualStrategie;
 import models.Maze;
 import models.PacmanGame;
 import views.ViewCommand;
 import views.ViewPacmanGame;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class ControleurPacmanGame extends AbstractController {
     Comportement cmptmt;
     ViewPacmanGame pkmView;
-    private ViewCommand pkmViewCommand;
+    ViewCommand pkmViewCommand;
+    ManualStrategie manualStrategie;
+
     protected String fileName = "originalClassic.lay";
 
     public ControleurPacmanGame(int mxt) throws Exception {
@@ -24,7 +30,7 @@ public class ControleurPacmanGame extends AbstractController {
         pkmView = new ViewPacmanGame(game);
         pkmViewCommand = new ViewCommand(game, this);
         cmptmt = new SimpleCompotementBtnRestart(pkmViewCommand);
-        
+
         connectBouttons();
         initializeMenu();
 
@@ -103,7 +109,105 @@ public class ControleurPacmanGame extends AbstractController {
                     setSpeed(1000 / (double)pkmViewCommand.slider.getValue());
                 }
             });
+
+        pkmViewCommand.virtualRowsBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if(pkmViewCommand.virtualRowsBox.isSelected()) pkmViewCommand.pva.setVisible(true); else pkmViewCommand.pva.setVisible(false);
+            }
+        });
+        
+        pkmViewCommand.manuelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie = getPkmModel().setPacmanManuel();
+                cmptmt = new ComportementManuel(pkmViewCommand);
+                pkmViewCommand.virtualRowsBox.setSelected(true);
+                pkmViewCommand.pva.setVisible(true);
+            }
+        });
+
+        pkmViewCommand.pva.up.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie.setAction(KeyEvent.VK_UP);
+                getPkmModel().step();
+            }
+        });
+
+        pkmViewCommand.pva.down.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie.setAction(KeyEvent.VK_DOWN);
+                getPkmModel().step();
+            }
+        });
+
+        pkmViewCommand.pva.left.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie.setAction(KeyEvent.VK_LEFT);
+                getPkmModel().step();
+            }
+        });
+
+
+        pkmViewCommand.pva.stop.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie.setAction(KeyEvent.VK_SPACE);
+                getPkmModel().step();
+            }
+        });
+
+        pkmViewCommand.pva.right.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                manualStrategie.setAction(KeyEvent.VK_RIGHT);
+                getPkmModel().step();
+            }
+        });
+
+        pkmViewCommand.pva.surEcoute.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent event) {
+                if(cmptmt instanceof ComportementManuel) {
+                    if(event.getKeyCode() == KeyEvent.VK_UP) {
+                        manualStrategie.setAction(KeyEvent.VK_UP);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_DOWN) {
+                        manualStrategie.setAction(KeyEvent.VK_DOWN);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_LEFT) {
+                        manualStrategie.setAction(KeyEvent.VK_LEFT);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        manualStrategie.setAction(KeyEvent.VK_RIGHT);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_SPACE) {
+                        manualStrategie.setAction(KeyEvent.VK_SPACE);
+                        getPkmModel().step();
+                    }
+                }
+            }
+        });
+
+        pkmViewCommand.pva.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent event) {
+                if(cmptmt instanceof ComportementManuel) {
+                    if(event.getKeyCode() == KeyEvent.VK_UP) {
+                        manualStrategie.setAction(KeyEvent.VK_UP);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_DOWN) {
+                        manualStrategie.setAction(KeyEvent.VK_DOWN);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_LEFT) {
+                        manualStrategie.setAction(KeyEvent.VK_LEFT);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_RIGHT) {
+                        manualStrategie.setAction(KeyEvent.VK_RIGHT);
+                        getPkmModel().step();
+                    } else if(event.getKeyCode() == KeyEvent.VK_SPACE) {
+                        manualStrategie.setAction(KeyEvent.VK_SPACE);
+                        getPkmModel().step();
+                    }
+                }
+            }
+        });
     }
+
 
     protected void initializeMenu() {
         pkmView.chgLab.addActionListener(new ActionListener() {

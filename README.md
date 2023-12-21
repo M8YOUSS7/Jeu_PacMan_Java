@@ -239,7 +239,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       Exemple d'utilisation cf LinearStrategie.java
 
 
-   # AbstractAdvanceStrategie
+   ## AbstractAdvanceStrategie
 
       Ce fichier contient la classe `AbstractAdvanceStrategie` qui est une classe abstraite implémentant l'interface `Strategie`. Cette classe fait partie du projet PacMan et se trouve dans le package `models`.
 
@@ -282,3 +282,19 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       ### Utilisation
 
       Pour utiliser cette classe, vous devez créer une classe dérivée de `Comportement` et implémenter la méthode `ajuste()` en fonction des besoins spécifiques.
+
+   ## PanelVirtualArrows
+
+      Le fichier `PanelVirtualArrows.java` est une classe de vue qui représente un panneau contenant des boutons avec des flèches virtuelles et elle écoute les flèches clavier. Ce panneau est utilisé dans PacManGame et gère le deplacer du pacman au sein du jeu.
+
+      ### Fonctionnalités
+
+      - Affichage de boutons avec des flèches virtuelles (haut, bas, gauche, droite, arrêt).
+      - Utilisation d'icônes pour représenter les flèches.
+      - Disposition en grille des boutons.
+
+      ### Utilisation
+
+      1. Importez la classe `PanelVirtualArrows` dans votre projet.
+      2. Créez une instance de `PanelVirtualArrows`.
+      3. Ajoutez le panneau à votre interface graphique.

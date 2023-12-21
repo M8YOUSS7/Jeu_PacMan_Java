@@ -58,7 +58,7 @@ public class ControllerSimpleGame extends AbstractController {
 
         sView.afficher();
         cView.afficher();
-        cmptmt = new SimpleComportementCommandArreter(cView);
+        cmptmt = new SimpleCompotementBtnRestart(cView);
     }
 
 

@@ -12,5 +12,7 @@ public class SimpleCompotementBtnRestart extends Comportement {
         cView.step.setEnabled(true);
         cView.pause.setEnabled(false);
         cView.restart.setEnabled(false);
+        cView.manuelButton.setEnabled(true);
+        cView.virtualRowsBox.setEnabled(false);
     }
 }

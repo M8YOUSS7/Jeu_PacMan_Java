@@ -1,7 +1,9 @@
 package models;
 
+import java.util.ArrayList;
+
 public class ScaredStrategie extends AbstractAdvanceStrategie {
-    ScaredStrategie(PacmanGame game) {
+    public ScaredStrategie(PacmanGame game) {
         super(game);
     }
 
@@ -10,16 +12,14 @@ public class ScaredStrategie extends AbstractAdvanceStrategie {
         AgentAction res;
 
         if(a instanceof Pacman) {
-            PositionAgent capsule = getCloserCapsule(a.getPos());
-            res = getVectorAction(a.pos, capsule);
-            if(capsule != null && isLegalMove(a, res, m)) {
-                return res;
-            }
-
+           //PositionAgent capsule = getCloserCapsule(a.getPos());
+            //ArrayList<PositionAgent> path = findShortestPath(a.getPos(), capsule);
+            //System.out.println("Capsule: " + capsule + " | Path: " + path);            
+            //res = (!path.isEmpty()) ? new AgentAction(path.get(0).getDir()) : new AgentAction(AgentAction.STOP);
         } else {
-            res = new AgentAction(a.getPos().getDir());
         }
-
+        
+        res = new AgentAction(a.getPos().getDir());
         return res;
     }
 }

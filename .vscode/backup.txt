@@ -54,3 +54,28 @@ ArrayList <AgentAction> legalActions = new ArrayList<AgentAction>();
         System.out.println(res_.toString());
 
         return (legalActions.isEmpty()) ? new AgentAction(AgentAction.STOP) : res_;
+
+
+
+
+
+------------------------------------------------------------------------------
+
+    public AgentAction getVectorAction(PositionAgent a, PositionAgent b) {
+        int vecX = b.getX() - a.getX();
+        int vecY = b.getY() - a.getY();
+
+        if(vecX == 0 && vecY < 0) {
+            return new AgentAction(AgentAction.NORTH);
+        } else if(vecX == 0 && vecY > 0) {
+            return new AgentAction(AgentAction.SOUTH);
+        } else if(vecX > 0 && vecY == 0) {
+            return new AgentAction(AgentAction.EAST);
+        } else if(vecX < 0 && vecY == 0) {
+            return new AgentAction(AgentAction.WEST);
+        } else if(vecX > 0 && vecY > 0 && vecY > vecX) {
+            return new AgentAction(AgentAction.NORTH);
+        }
+        
+        return new AgentAction(AgentAction.STOP);
+    }

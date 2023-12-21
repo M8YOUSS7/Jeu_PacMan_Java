@@ -114,7 +114,7 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         return enemies.stream().min((o1, o2) -> findShortestPath(p.pos, o1, maze).size()-findShortestPath(p.pos, o2, maze).size()).get();
     }
 
-    public PositionAgent getCloserPacman(Fantome f, Maze maze) {
+    public PositionAgent getCloserEnemy(Fantome f, Maze maze) {
         ArrayList<PositionAgent> pacmans = new ArrayList<>();
 
         for(Agent a : game.listeAgents) {

@@ -12,12 +12,14 @@ public class ScaredStrategie extends AbstractAdvanceStrategie {
         AgentAction res;
 
         if(a instanceof Pacman) {
-           //PositionAgent capsule = getCloserCapsule(a.getPos());
-            //ArrayList<PositionAgent> path = findShortestPath(a.getPos(), capsule);
-            //System.out.println("Capsule: " + capsule + " | Path: " + path);            
-            //res = (!path.isEmpty()) ? new AgentAction(path.get(0).getDir()) : new AgentAction(AgentAction.STOP);
-        } else {
+            // chercher un chemin sur lequel il n'y a pas de fantome
+            PositionAgent capsule = getCloserCapsule(a.getPos(), m);
+            ArrayList<PositionAgent> path = findShortestPath(a.getPos(), capsule, m);
+            res = getActionFromPos(a.getPos(), path.get(1));
+            return res;
         }
+        
+        // cherche un chemin sur lequel il n'y a pas de pacman
         
         res = new AgentAction(a.getPos().getDir());
         return res;

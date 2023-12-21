@@ -20,17 +20,7 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         this.game = game;
     }
 
-    protected PositionAgent getNewPositionAgent(Agent a, AgentAction act) {
-        return new PositionAgent(a.pos.getX() + act.get_vx(), a.pos.getY() + act.get_vy(), act.get_direction());
-    }
-
-    protected PositionAgent getNewPositionAgent(PositionAgent pos, AgentAction act) {
-        return new PositionAgent(pos.getX() + act.get_vx(), pos.getY() + act.get_vy(), act.get_direction());
-    }
-
     public ArrayList<PositionAgent> findShortestPath(PositionAgent start, PositionAgent end, Maze maze) {
-        System.out.println("Start" + start + "\n end : " + end);
-        
         Map<PositionAgent, Node> nodes = new HashMap<>();
         Node endNode = new Node();
         endNode.position = end;
@@ -82,6 +72,8 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         return res.stream().filter(pos -> !maze.isWall(pos.getX(), pos.getY())).collect(Collectors.toCollection(ArrayList::new));
     }
 
+    
+
     public PositionAgent getCloserCapsule(PositionAgent pos, Maze maze) {
         ArrayList<PositionAgent> capsules = new ArrayList<>();
 
@@ -132,5 +124,22 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         }
 
         return pacmans.stream().min((o1, o2) -> findShortestPath(f.pos, o1, maze).size()-findShortestPath(f.pos, o2, maze).size()).get();
+    }
+
+    protected AgentAction getActionFromPos(PositionAgent p, PositionAgent p_) {
+        if(p.getX() == p_.getX()) {
+            if(p.getY() == p_.getY()+1) {
+                return new AgentAction(AgentAction.NORTH);
+            } else if(p.getY() == p_.getY()-1) {
+                return new AgentAction(AgentAction.SOUTH);
+            }
+        } else if(p.getY() == p_.getY()) {
+            if(p.getX() == p_.getX()+1) {
+                return new AgentAction(AgentAction.WEST);
+            } else if(p.getX() == p_.getX()-1) {
+                return new AgentAction(AgentAction.EAST);
+            }
+        }
+        return new AgentAction(AgentAction.STOP);
     }
 }

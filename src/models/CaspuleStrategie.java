@@ -12,7 +12,11 @@ public class CaspuleStrategie extends AbstractAdvanceStrategie {
         //l'idee est de calculer la position de la plus proche capsule et de se rapprocher de celle-ci
 
         PositionAgent closerCapsule = getCloserCapsule(a.pos, m);
-        ArrayList<PositionAgent> path = findShortestPath(a.getPos(), closerCapsule, m);
+        if(closerCapsule != null) {
+            ArrayList<PositionAgent> path = findShortestPath(a.getPos(), closerCapsule, m);
             return moveCloser(a.pos, path.get(1));
+        }
+
+        return new AgentAction(AgentAction.STOP);
     }
 }

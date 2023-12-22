@@ -13,7 +13,11 @@ public class ScaredStrategie extends AbstractAdvanceStrategie {
         // cherche un chemin sur lequel il n'y a pas de pacman et inversement
 
         PositionAgent closerEnemy = getCloserEnemy(a, m);
-        ArrayList<PositionAgent> path = findShortestPath(a.getPos(), closerEnemy, m);
+        if(closerEnemy != null) {
+            ArrayList<PositionAgent> path = findShortestPath(a.getPos(), closerEnemy, m);
             return moveAway(a.pos, path.get(1));
+        }
+
+        return new AgentAction(AgentAction.STOP);
     }
 }

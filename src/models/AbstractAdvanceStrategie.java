@@ -120,16 +120,16 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
     }
 
     public PositionAgent getCloserFood(PositionAgent pos, Maze maze) {
-        ArrayList<PositionAgent> capsules = new ArrayList<>();
+        ArrayList<PositionAgent> foods = new ArrayList<>();
 
         for(int i = 0; i < game.labyrinthe.getSizeX(); i++) {
             for(int j = 0; j < game.labyrinthe.getSizeY(); j++) {
                 if(game.labyrinthe.isFood(i, j)) {
-                    capsules.add(new PositionAgent(i, j, 0));
+                    foods.add(new PositionAgent(i, j, 0));
                 }
             }
         }
-            return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
+            return (!foods.isEmpty()) ? foods.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get() : null;
     }
 
     public PositionAgent getCloserEnemy(Agent agt, Maze maze) {

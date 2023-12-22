@@ -17,28 +17,24 @@ public class Ai1Strategie extends AbstractAdvanceStrategie {
 
             if(game.state instanceof CapsulePeriodeState) {
                 action = new ScaryStrategie(game).getAction(a, m);
-                if(isLegalMove(a, action, m)) {
+                if(isLegalMove(a, action, m) && action.get_direction() != AgentAction.STOP) {
                     return action;
                 }
-
-                action = new LinearStrategie().getAction(a, m);
-                if(isLegalMove(a, action, m)) {
-                    return action;
-                }
+                    return new LinearStrategie().getAction(a, m);
             }
 
             action = new CaspuleStrategie(game).getAction(a, m);
-            if(isLegalMove(a, action, m)) {
+            if(isLegalMove(a, action, m) && action.get_direction() != AgentAction.STOP) {
                 return action;
             }
 
             action = new FoodStrategie(game).getAction(a, m);
-            if(isLegalMove(a, action, m)) {
+            if(isLegalMove(a, action, m) && action.get_direction() != AgentAction.STOP) {
                 return action;
             }
 
             action = new ScaredStrategie(game).getAction(a, m);
-            if(isLegalMove(a, action, m)) {
+            if(isLegalMove(a, action, m) && action.get_direction() != AgentAction.STOP) {
                 return action;
             }
 
@@ -56,7 +52,6 @@ public class Ai1Strategie extends AbstractAdvanceStrategie {
                     return action;
             }
             
-            action = new LinearStrategie().getAction(a, m);
-                return action;
+            return new LinearStrategie().getAction(a, m);
     }
 }

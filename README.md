@@ -221,42 +221,6 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
          
          Assurez-vous d'inclure ces classes dans votre projet pour pouvoir utiliser la classe PacmanGame correctement.
 
-   ## Strategie.java
-      Ce fichier contient l'interface `Strategie` qui définit le contrat pour les stratégies utilisées par l'agent PacMan dans le jeu Maze.
-
-      ### Méthodes
-
-      - `getAction(Agent a, Maze m)`: Cette méthode retourne l'action que l'agent doit effectuer en fonction des informations données par l'agent `a` et le labyrinthe `m`. Elle doit être implémentée par les classes qui implémentent cette interface.
-
-      - `isLegalMove(Agent a, AgentAction act, Maze labyrinthe)`: Cette méthode permet de vérifier si un mouvement donné est légal pour l'agent `a` dans le labyrinthe `labyrinthe`. Par défaut, elle vérifie si la position suite au mouvement n'est pas un mur. Cette méthode peut être surchargée si besoin.
-
-      ### Utilisation
-
-      Pour utiliser cette interface, vous pouvez créer des classes qui implémentent cette interface et définir vos propres stratégies pour l'agent PacMan. Vous pouvez également surcharger la méthode `isLegalMove` si vous souhaitez une logique différente pour vérifier la légalité des mouvements.
-
-      N'oubliez pas d'importer la classe `Agent` et `Maze` pour utiliser les paramètres de la méthode `getAction`.
-
-      Exemple d'utilisation cf LinearStrategie.java
-
-
-   ## AbstractAdvanceStrategie
-
-      Ce fichier contient la classe `AbstractAdvanceStrategie` qui est une classe abstraite implémentant l'interface `Strategie`. Cette classe fait partie du projet PacMan et se trouve dans le package `models`.
-
-      ### Fonctionnalités
-
-      La classe `AbstractAdvanceStrategie` fournit les fonctionnalités suivantes :
-
-      - `getNewPositionAgent(Agent a, AgentAction act)`: Cette méthode retourne une nouvelle position pour un agent en fonction de l'action spécifiée.
-      - `getNewPositionAgent(PositionAgent pos, AgentAction act)`: Cette méthode retourne une nouvelle position pour un agent en fonction de la position actuelle et de l'action spécifiée.
-
-      ### Utilisation
-
-      Pour utiliser la classe `AbstractAdvanceStrategie`, vous devez créer une classe qui l'étend et implémenter les méthodes de l'interface `Strategie`. Vous pouvez ensuite utiliser les méthodes fournies par `AbstractAdvanceStrategie` pour obtenir de nouvelles positions pour vos agents.
-
-      Exemple d'utilisation cf ScaredStrategie.java
-
-
    ## AbstractPacmanGameState.java
 
       Ce fichier contient la définition de la classe `AbstractPacmanGameState` dans le package `models`. Cette classe est une classe abstraite qui représente l'état du jeu Pacman(CapsulePeriode, NormarleState, ).
@@ -298,3 +262,90 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
       1. Importez la classe `PanelVirtualArrows` dans votre projet.
       2. Créez une instance de `PanelVirtualArrows`.
       3. Ajoutez le panneau à votre interface graphique.
+
+
+   ## Strategie.java
+      Ce fichier contient l'interface `Strategie` qui définit le contrat pour les stratégies utilisées par l'agent PacMan dans le jeu Maze.
+
+      ### Méthodes
+
+      - `getAction(Agent a, Maze m)`: Cette méthode retourne l'action que l'agent doit effectuer en fonction des informations données par l'agent `a` et le labyrinthe `m`. Elle doit être implémentée par les classes qui implémentent cette interface.
+
+      - `isLegalMove(Agent a, AgentAction act, Maze labyrinthe)`: Cette méthode permet de vérifier si un mouvement donné est légal pour l'agent `a` dans le labyrinthe `labyrinthe`. Par défaut, elle vérifie si la position suite au mouvement n'est pas un mur. Cette méthode peut être surchargée si besoin.
+
+      ### Utilisation
+
+      Pour utiliser cette interface, vous pouvez créer des classes qui implémentent cette interface et définir vos propres stratégies pour l'agent PacMan. Vous pouvez également surcharger la méthode `isLegalMove` si vous souhaitez une logique différente pour vérifier la légalité des mouvements.
+
+      N'oubliez pas d'importer la classe `Agent` et `Maze` pour utiliser les paramètres de la méthode `getAction`.
+
+      Exemple d'utilisation cf LinearStrategie.java
+
+   ## AbstractAdvanceStrategie
+
+      Ce fichier contient la classe `AbstractAdvanceStrategie` qui est une classe abstraite implémentant l'interface `Strategie`. Cette classe fournit des méthodes pour la gestion avancée des stratégies dans le jeu Pacman.
+
+      ### Fonctionnalités
+
+      - `findAllPath(PositionAgent start, PositionAgent end, Maze maze)`: Cette méthode permet de trouver tous les chemins possibles entre deux positions dans un labyrinthe donné.
+      - `findShortestPath(PositionAgent start, PositionAgent end, Maze maze)`: Cette méthode permet de trouver le chemin le plus court entre deux positions dans un labyrinthe donné.
+      - `getNeighbors(PositionAgent position, Maze maze)`: Cette méthode retourne les voisins d'une position donnée dans un labyrinthe donné.
+      - `getCloserCapsule(PositionAgent pos, Maze maze)`: Cette méthode retourne la capsule la plus proche d'une position donnée dans un labyrinthe donné.
+      - `getCloserEnemy(PositionAgent pos, Maze maze)`: Cette méthode retourne la l'enemie le plus proche d'une position donnée dans un labyrinthe donné.
+      - `getCloserFood(PositionAgent pos, Maze maze)`: Cette méthode retourne la l'enemie le plus proche d'une position donnée dans un labyrinthe donné.
+
+      ### Utilisation
+
+      Pour utiliser la classe `AbstractAdvanceStrategie`, vous devez l'étendre et implémenter les méthodes abstraites de l'interface `Strategie`.
+
+
+   ## ScaryStrategie
+
+      Ce fichier contient la classe `ScaryStrategie` qui représente une stratégie effrayante pour le jeu PacMan. Cette classe hérite de la classe `AbstractAdvanceStrategie` et implémente la méthode `getAction` pour déterminer l'action à effectuer par un agent.
+
+      ### Fonctionnalités
+
+      - Calcul de la position de l'ennemi le plus proche et déplacement vers lui.
+      - Recherche d'un Pacman à attaquer et inversement.
+
+      ### Utilisation
+
+      1. Assurez-vous d'avoir importé la classe `ScaryStrategie` dans votre projet.
+      2. Créez une instance de `ScaryStrategie` en lui passant une instance de `PacmanGame` en paramètre.
+      3. Appelez la méthode `getAction` en lui passant un agent et un labyrinthe en paramètres pour obtenir l'action à effectuer.
+
+   # Ai1Strategie.java
+
+      Ce fichier contient la classe `Ai1Strategie`, qui est une implémentation d'une stratégie pour le jeu Pac-Man. Cette classe hérite de la classe `AbstractAdvanceStrategie` et définit une série d'actions à effectuer par l'agent contrôlé par l'IA.
+
+      ### Fonctionnalités
+
+      La classe `Ai1Strategie` implémente la méthode `getAction` qui retourne l'action à effectuer par l'agent en fonction de l'état actuel du jeu et de la disposition des éléments dans le labyrinthe.
+
+      Les fonctionnalités principales de cette classe sont les suivantes :
+
+      - Calcul de la position de la capsule la plus proche et déplacement vers celle-ci tout en évitant les fantômes.
+      - Recherche de la nourriture la plus proche et consommation de celle-ci tout en évitant les fantômes.
+      - Déplacement vers un coin ou le centre de la carte le plus proche tout en évitant les fantômes.
+
+      ### Utilisation
+
+      Pour utiliser la classe `Ai1Strategie`, vous devez l'instancier en lui passant une instance de la classe `PacmanGame` dans le constructeur. Ensuite, vous pouvez appeler la méthode `getAction` en lui passant l'agent contrôlé par l'IA et le labyrinthe actuel en tant que paramètres.
+
+   # Ai2Strategie.java
+
+      Ce fichier contient la classe Ai2Strategie, qui est une classe de stratégie avancée pour le jeu Pac-Man.
+
+      ### Description
+
+      La classe Ai2Strategie étend la classe AbstractAdvanceStrategie et implémente la méthode getAction. L'objectif de cette stratégie est de calculer la position du Pac-Man le plus proche et de s'en rapprocher s'il y en a au moins un. Sinon, la stratégie cherchera à s'enfuir.
+
+      ### Fonctionnalités
+
+      - La classe Ai2Strategie hérite de la classe AbstractAdvanceStrategie et utilise les méthodes et fonctionnalités de cette classe.
+      - La méthode getAction calcule la position du Pac-Man le plus proche et retourne l'action à effectuer pour s'en rapprocher ou s'enfuir.
+      - La classe utilise d'autres classes de stratégie telles que ScaryStrategie, ScaredStrategie et LinearStrategie pour prendre des décisions en fonction de l'état du jeu.
+
+      ### Utilisation
+
+      Pour utiliser la classe Ai2Strategie, vous pouvez l'instancier dans votre code et appeler la méthode getAction en lui passant l'agent et le labyrinthe en paramètres.

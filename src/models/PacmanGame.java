@@ -36,6 +36,8 @@ public class PacmanGame extends Game {
         for(PositionAgent pa : labyrinthe.getGhosts_start()) {
             listeAgents.add(new Fantome(pa, new LinearStrategie()));
         }
+
+        listeAgents.stream().filter(a -> a instanceof Fantome).findAny().get().setStrategy(new Ai2Strategie(this));
     }
     
     @Override
@@ -114,17 +116,17 @@ public class PacmanGame extends Game {
     }
 
     protected Strategie getOneStrategie() {
-        int s = new Random().nextInt(5);
+        int s = new Random().nextInt(10);
         if(s == 0) {
             return new LinearStrategie();
         } else if (s==1) {
             return new ScaredStrategie(uniqueInstance);
         }  else if (s==2) {
-            return new ScaryStrategie(uniqueInstance);
+            return new AleatStrategie();
         }  else if (s==3) {
             return new SimpleStrategie();
         } else
-            return new AleatStrategie();
+            return new ScaryStrategie(uniqueInstance);
     }
 
     public ArrayList<Agent> getListeAgents() {

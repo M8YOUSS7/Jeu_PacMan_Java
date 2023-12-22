@@ -114,11 +114,15 @@ public class PacmanGame extends Game {
     }
 
     protected Strategie getOneStrategie() {
-        int s = new Random().nextInt(3);
+        int s = new Random().nextInt(5);
         if(s == 0) {
-            return new AleatStrategie();
-        } else if (s==1) {
             return new LinearStrategie();
+        } else if (s==1) {
+            return new ScaredStrategie(uniqueInstance);
+        }  else if (s==2) {
+            return new ScaryStrategie(uniqueInstance);
+        }  else if (s==3) {
+            return new SimpleStrategie();
         } else
             return new AleatStrategie();
     }

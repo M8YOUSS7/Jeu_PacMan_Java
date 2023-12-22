@@ -60,16 +60,12 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         // Implémentez cette méthode pour retourner les voisins de la position donnée
         ArrayList<PositionAgent> res = new ArrayList<>();
         
-        if(position.getY()+1 < maze.getSizeY())
-            res.add(new PositionAgent(position.getX(), position.getY()+1, AgentAction.NORTH));
-        if(position.getY()-1 >= 0)
-            res.add(new PositionAgent(position.getX(), position.getY()-1, AgentAction.SOUTH));
-        if(position.getX()-1 >= 0)
-            res.add(new PositionAgent(position.getX()-1, position.getY(), AgentAction.EAST));
-        if(position.getX()+1 < maze.getSizeX())
-            res.add(new PositionAgent(position.getX()+1, position.getY(), AgentAction.WEST));
+        if(position.getY()+1 < maze.getSizeY())     res.add(new PositionAgent(position.getX(), position.getY()+1, AgentAction.NORTH));
+        if(position.getY()-1 >= 0)                  res.add(new PositionAgent(position.getX(), position.getY()-1, AgentAction.SOUTH));
+        if(position.getX()-1 >= 0)                  res.add(new PositionAgent(position.getX()-1, position.getY(), AgentAction.EAST));
+        if(position.getX()+1 < maze.getSizeX())     res.add(new PositionAgent(position.getX()+1, position.getY(), AgentAction.WEST));
 
-        return res.stream().filter(pos -> !maze.isWall(pos.getX(), pos.getY())).collect(Collectors.toCollection(ArrayList::new));
+            return res.stream().filter(pos -> !maze.isWall(pos.getX(), pos.getY())).collect(Collectors.toCollection(ArrayList::new));
     }
 
     
@@ -84,8 +80,7 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
                 }
             }
         }
-
-        return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
+            return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
     }
 
     public PositionAgent getCloserFood(PositionAgent pos, Maze maze) {
@@ -98,35 +93,27 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
                 }
             }
         }
-
-        return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
+            return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
     }
 
-    public PositionAgent getCloserEnemy(Pacman p, Maze maze) {
+    public PositionAgent getCloserEnemy(Agent agt, Maze maze) {
         ArrayList<PositionAgent> enemies = new ArrayList<>();
 
-        for(Agent a : game.listeAgents) {
-            if(a instanceof Fantome) {
-                enemies.add(a.pos);
-            }
+        if(agt instanceof Pacman) {
+            for(Agent a : game.listeAgents)
+                if(a instanceof Fantome) {
+                    enemies.add(a.pos);
+                }
+        } else {
+            for(Agent a : game.listeAgents)
+                if(a instanceof Pacman)
+                    enemies.add(a.pos);
         }
-
-        return enemies.stream().min((o1, o2) -> findShortestPath(p.pos, o1, maze).size()-findShortestPath(p.pos, o2, maze).size()).get();
+            return enemies.stream().min((o1, o2) -> findShortestPath(agt.pos, o1, maze).size()-findShortestPath(agt.pos, o2, maze).size()).get();
     }
 
-    public PositionAgent getCloserEnemy(Fantome f, Maze maze) {
-        ArrayList<PositionAgent> pacmans = new ArrayList<>();
 
-        for(Agent a : game.listeAgents) {
-            if(a instanceof Pacman) {
-                pacmans.add(a.pos);
-            }
-        }
-
-        return pacmans.stream().min((o1, o2) -> findShortestPath(f.pos, o1, maze).size()-findShortestPath(f.pos, o2, maze).size()).get();
-    }
-
-    protected AgentAction getActionFromPos(PositionAgent p, PositionAgent p_) {
+    protected AgentAction moveCloser(PositionAgent p, PositionAgent p_) {
         if(p.getX() == p_.getX()) {
             if(p.getY() == p_.getY()+1) {
                 return new AgentAction(AgentAction.NORTH);
@@ -140,6 +127,23 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
                 return new AgentAction(AgentAction.EAST);
             }
         }
-        return new AgentAction(AgentAction.STOP);
+            return new AgentAction(AgentAction.STOP);
+    }
+
+    protected AgentAction moveAway(PositionAgent p, PositionAgent p_) {
+        if(p.getX() == p_.getX()) {
+            if(p.getY() == p_.getY()+1) {
+                return new AgentAction(AgentAction.SOUTH);
+            } else if(p.getY() == p_.getY()-1) {
+                return new AgentAction(AgentAction.NORTH);
+            }
+        } else if(p.getY() == p_.getY()) {
+            if(p.getX() == p_.getX()+1) {
+                return new AgentAction(AgentAction.EAST);
+            } else if(p.getX() == p_.getX()-1) {
+                return new AgentAction(AgentAction.WEST);
+            }
+        }
+            return new AgentAction(AgentAction.STOP);
     }
 }

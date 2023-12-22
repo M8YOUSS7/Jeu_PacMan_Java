@@ -30,7 +30,7 @@ public class PacmanGame extends Game {
     public void initializeGame() {
         listeAgents.clear();
         for(PositionAgent pa : labyrinthe.getPacman_start()) {
-            listeAgents.add(new Pacman(pa, new ScaredStrategie(this)));
+            listeAgents.add(new Pacman(pa, new Ai1Strategie(this)));
         }
 
         for(PositionAgent pa : labyrinthe.getGhosts_start()) {

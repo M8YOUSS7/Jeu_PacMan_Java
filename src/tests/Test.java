@@ -33,8 +33,9 @@ public class Test {
         
         //ctr.play();
 
-        //ScaredStrategie strate = new ScaredStrategie(ctr.getPkmModel());
-        //PositionAgent pcm = ctr.getPkmModel().getPacman().getPos();
-        //ArrayList<PositionAgent> path = strate.findShortestPath(ctr.getPkmModel().getPacman().getPos(), new PositionAgent(1, 3, 0), ctr.getPkmModel().getLabyrinthe());
+        /*
+         * ScaredStrategie strate = new ScaredStrategie(ctr.getPkmModel());
+        strate.findAllPath(ctr.getPkmModel().getPacman().getPos(), new PositionAgent(1, 3, 0), ctr.getPkmModel().getLabyrinthe());
+         */
     }
 }

@@ -14,29 +14,64 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
         PositionAgent position;
         int distance;
         Node predecessor;
+
+        public boolean seen(PositionAgent position) {
+            Node currentNode = this;
+
+            while (currentNode != null) {
+                if(currentNode.position.equals(position))
+                    return true;
+                currentNode = currentNode.predecessor;
+            }
+            return false;
+        }
+
+        public boolean equals(Node node) {
+            Node currentNode = this;
+            Node currentNode_ = node;
+
+            while (currentNode != null && currentNode_ != null) {
+                if(!currentNode.position.equals(currentNode_.position))
+                    return false;
+                currentNode = currentNode.predecessor;
+                currentNode_ = currentNode_.predecessor;
+            }
+                return true;
+        }
+
+        public ArrayList<PositionAgent> getPath() {
+            ArrayList<PositionAgent> path = new ArrayList<>();
+            Node currentNode = this;
+
+            while (currentNode != null) {
+                path.add(currentNode.position);
+                currentNode = currentNode.predecessor;
+            }
+            return path;
+        }
     }
 
     AbstractAdvanceStrategie(PacmanGame game) {
         this.game = game;
     }
 
-    public ArrayList<PositionAgent> findShortestPath(PositionAgent start, PositionAgent end, Maze maze) {
+    public ArrayList<ArrayList<PositionAgent>> findAllPath(PositionAgent start, PositionAgent end, Maze maze) {
         Map<PositionAgent, Node> nodes = new HashMap<>();
         Node endNode = new Node();
         endNode.position = end;
         endNode.distance = 0;
-
+        
         nodes.put(end, endNode);
-
+        
         PriorityQueue<Node> queue = new PriorityQueue<>(Comparator.comparingInt(node -> node.distance));
         queue.add(endNode);
-
+        
         while (!queue.isEmpty()) {
             Node currentNode = queue.poll();
-
+            
             for (PositionAgent neighbor : getNeighbors(currentNode.position, maze)) {
-                if(!nodes.entrySet().stream().anyMatch(e -> e.getKey().equals(neighbor))) {
-                    Node neighborNode = nodes.getOrDefault(neighbor, new Node());
+                if(!currentNode.seen(neighbor) && !nodes.entrySet().stream().anyMatch(e -> e.getKey().equals(neighbor))) {
+                    Node neighborNode = new Node();
                     neighborNode.position = neighbor;
                     neighborNode.distance = currentNode.distance +1;
                     neighborNode.predecessor = currentNode;
@@ -46,15 +81,16 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
             }
         }
 
-        ArrayList<PositionAgent> path = new ArrayList<>();
-        Node currentNode = nodes.entrySet().stream().filter(e -> e.getKey().equals(start)).min((n1, n2) -> n1.getValue().distance - n2.getValue().distance).get().getValue();
+        ArrayList<ArrayList<PositionAgent>> paths = nodes.entrySet().stream().filter(v -> v.getValue().seen(start)).map(v -> v.getValue().getPath()).collect(Collectors.toCollection(ArrayList::new));
 
-        while (currentNode != null) {
-            path.add(currentNode.position);
-            currentNode = currentNode.predecessor;
-        }
-            return path;
+        return paths;
     }
+    
+    public ArrayList<PositionAgent> findShortestPath(PositionAgent start, PositionAgent end, Maze maze) {
+        return findAllPath(start, end, maze).stream().filter(path -> path.get(0).equals(start)).findFirst().get();
+        //return findAllPath(start, end, maze).stream().min(Comparator.comparingInt(ArrayList::size)).get();
+    }
+
 
     private ArrayList<PositionAgent> getNeighbors(PositionAgent position, Maze maze) {
         // Implémentez cette méthode pour retourner les voisins de la position donnée
@@ -80,7 +116,7 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
                 }
             }
         }
-            return capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get();
+            return (!capsules.isEmpty()) ? capsules.stream().min((o1, o2) -> findShortestPath(pos, o1, maze).size()-findShortestPath(pos, o2, maze).size()).get() : null;
     }
 
     public PositionAgent getCloserFood(PositionAgent pos, Maze maze) {
@@ -109,7 +145,7 @@ public abstract class AbstractAdvanceStrategie implements Strategie {
                 if(a instanceof Pacman)
                     enemies.add(a.pos);
         }
-            return enemies.stream().min((o1, o2) -> findShortestPath(agt.pos, o1, maze).size()-findShortestPath(agt.pos, o2, maze).size()).get();
+            return (!enemies.isEmpty()) ? enemies.stream().min((o1, o2) -> findShortestPath(agt.pos, o1, maze).size()-findShortestPath(agt.pos, o2, maze).size()).get() : null;
     }
 
 

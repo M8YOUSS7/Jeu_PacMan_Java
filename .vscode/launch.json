@@ -16,20 +16,6 @@
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
-        },
-        {
-            "type": "java",
-            "name": "App",
-            "request": "launch",
-            "mainClass": "App",
-            "projectName": "ProjetPacMan_33810ce9"
-        },
-        {
-            "type": "java",
-            "name": "Test",
-            "request": "launch",
-            "mainClass": "Test",
-            "projectName": "ProjetPacMan_33810ce9"
         }
     ]
 }

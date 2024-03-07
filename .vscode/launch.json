@@ -9,6 +9,29 @@
             "name": "Test",
             "request": "launch",
             "mainClass": "tests.Test",
+            "projectName": "ProjetPacMan_bbed7d6c"
+        },
+        {
+            "type": "java",
+            "name": "Serveur",
+            "request": "launch",
+            "mainClass": "serveur.main.Serveur",
+            "projectName": "ProjetPacMan_bbed7d6c",
+            "args": "1234"
+        },
+        {
+            "type": "java",
+            "name": "Client",
+            "request": "launch",
+            "mainClass": "client.main.Client",
+            "projectName": "ProjetPacMan_bbed7d6c",
+            "args": "localhost 1234"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "tests.Test",
             "projectName": "ProjetPacMan_33810ce9"
         },
         {

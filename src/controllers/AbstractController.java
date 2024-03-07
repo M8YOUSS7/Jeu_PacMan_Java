@@ -2,9 +2,9 @@ package controllers;
 import models.Game;
 
 public abstract class AbstractController {
-    Game game;
+    protected Game game;
 
-    AbstractController(Game g) {
+    protected AbstractController(Game g) {
         game = g;
         game.init();
     }

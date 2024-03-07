@@ -1,9 +1,7 @@
 package models;
 
 import java.lang.Runnable;
-import java.util.ArrayList;
 import java.util.Observable;
-import java.util.Observer;
 
 
 public abstract class Game extends Observable implements Runnable {
@@ -49,7 +47,7 @@ public abstract class Game extends Observable implements Runnable {
     }
 
     public void run() {
-        while(isRunning ==true) {
+        while(isRunning==true) {
             step();
             try {
                 Thread.sleep(time);

@@ -32,10 +32,15 @@ public class Test {
         ControleurPacmanGame ctr = new ControleurPacmanGame(15000);
         
         //ctr.play();
+        /*       
+        
+        ScaredStrategie strate = new ScaredStrategie(ctr.getPkmModel());
 
-        /*
-         * ScaredStrategie strate = new ScaredStrategie(ctr.getPkmModel());
-        strate.findAllPath(ctr.getPkmModel().getPacman().getPos(), new PositionAgent(1, 3, 0), ctr.getPkmModel().getLabyrinthe());
-         */
+        System.out.println(ctr.getPkmModel().getPacman().getPos());
+        strate.findAllPath(ctr.getPkmModel().getPacman().getPos(), new PositionAgent(1, 3, 0), ctr.getPkmModel().getLabyrinthe()).forEach(v ->  {
+            System.out.print(v.stream().map(PositionAgent::toString).collect(Collectors.joining(" <- ")));
+            System.out.println();
+        });*/
+         
     }
 }

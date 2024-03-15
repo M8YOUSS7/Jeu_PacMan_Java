@@ -13,7 +13,6 @@ public class FoodStrategie extends AbstractAdvanceStrategie {
         /***    Attention que pour les packmans !   ***/
 
         PositionAgent closerFood = getCloserFood(a.pos, m);
-        ArrayList<PositionAgent> path = findShortestPath(a.getPos(), closerFood, m);
-            return moveCloser(a.pos, path.get(1));
+            return moveCloser(a.pos, closerFood);
     }
 }
